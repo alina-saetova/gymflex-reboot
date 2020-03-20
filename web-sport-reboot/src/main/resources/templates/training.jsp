@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/css/styles.css" type="text/css">
-    <script src="../static/css/js/like.js"></script>
-    <script src="../static/css/js/training.js"></script>
+    <script src="../static/js/like.js"></script>
+    <script src="../static/js/training.js"></script>
     <script type="text/javascript">
         function like(id) {
             document.getElementById("textarea1").value = '';

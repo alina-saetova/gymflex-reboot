@@ -42,19 +42,19 @@
         </ol>
         <div class="carousel-inner" role="listbox">
             <!-- Slide One - Set the background image for this slide in the line below -->
-            <div class="carousel-item active" style="background-image: url('../static/css/img/img3.jpg')">
+            <div class="carousel-item active" style="background-image: url('../static/img/img3.jpg')">
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4">Сила воли</h2>
                     <!-- <p class="lead">This is a description for the first slide.</p>-->
                 </div>
             </div>
             <!-- Slide Two - Set the background image for this slide in the line below -->
-            <div class="carousel-item" style="background-image: url('../static/css/img/img2.jpg')">
+            <div class="carousel-item" style="background-image: url('../static/img/img2.jpg')">
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4">Сила духа</h2>
                 </div>
             </div>
-            <div class="carousel-item" style="background-image: url('../static/css/img/img1.jpg')">
+            <div class="carousel-item" style="background-image: url('../static/img/img1.jpg')">
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4">Мотивация</h2>
                 </div>

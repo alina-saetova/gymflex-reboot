@@ -15,7 +15,7 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/css/styles.css" type="text/css">
     <title>Профиль</title>
-    <script src="../static/css/js/profile.js"></script>
+    <script src="../static/js/profile.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.4.js" charset="utf-8"></script>
     <script type="text/javascript">
         //если переместить в отдельный файл, у алертов слетает кодировка
