@@ -1,7 +1,6 @@
 function calculate() {
     $.ajax({
-        type: "POST",
-        url: "/calculator",
+        url: "/calculator/calculate",
         data: {
             age: $("#age").val(),
             weight: $('#weight').val(),
@@ -12,7 +11,7 @@ function calculate() {
         },
         success: function (msg) {
             $('#answer').html("");
-            $('#answer').append("<a href=\"#\" class=\"a_reg\">" + msg + "</a>\n");
+            $('#answer').append("<h5 style=\"font-weight: bold\"><a href=\"#\" class=\"a_reg\">" + msg + "</a></h5>\n");
         }
     })
 }
