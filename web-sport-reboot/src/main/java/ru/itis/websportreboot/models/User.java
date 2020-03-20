@@ -24,4 +24,9 @@ public class User {
     private String email;
     private String password;
     private String photo;
+
+    @Enumerated(value = EnumType.STRING)
+    private State state;
+
+    private  String confirmCode;
 }
