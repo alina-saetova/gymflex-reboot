@@ -1,0 +1,295 @@
+@font-face {
+    font-family: 'comfortaa';
+    src: url('fonts/comfortaa.ttf');
+}
+
+.navbar {
+    height: 60px;
+}
+
+html, body {
+    height: 100%;
+}
+
+a, .page-link {
+    color: #FF6A2A;
+}
+
+a:hover, .page-link:hover {
+    color: #83888E;
+}
+
+footer {
+    margin-top: 100px;
+    color: white;
+    background-color: #313131;
+    padding: 20px;
+    text-align: center;
+}
+
+.btn {
+    color: white;
+    background-color: #FF6A2A;
+}
+
+.btn:hover {
+    color: white;
+    background-color: #FFAE68;
+}
+
+body {
+    background-color: white;
+    font-family: 'Comfortaa', sans-serif;
+    /*color: white;*/
+}
+
+main {
+    min-height: 110%;
+}
+
+h3, h4, h5, h6 {
+    color: white;
+}
+
+h1 {
+    color: #FF6A2A;
+}
+
+.carousel-item {
+    height: 95vh;
+    min-height: 350px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.tr {
+    background-color: rgba(33, 37, 41, 0.3) !important;
+}
+
+.list-group-item {
+    width: auto;
+    display: flex;
+    border-radius: 5px;
+}
+
+#profile-img {
+    display: block;
+    margin: auto;
+}
+
+.input-group-prepend span {
+    width: 50px;
+    background-color: #FF6A2A;
+    color: white;
+    border: 0 !important;
+}
+
+.card-header h3 {
+    color: white;
+}
+
+
+.form-card {
+    height: 420px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(33, 37, 41, 0.3) !important;
+}
+
+.form-card.type3 {
+    height: auto;
+    width: 500px;
+}
+
+.log-in-card {
+    height: 300px;
+}
+
+.formula-card {
+    height: 510px;
+}
+
+.remember {
+    color: white;
+}
+
+.remember input {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+.container.type1 {
+    margin-top: 50px;
+    height: 100%;
+    align-content: center;
+}
+
+.body-with-img {
+    font-family: 'Comfortaa', sans-serif;
+    background-image: url("img/img1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    min-height: 100%;
+}
+
+.container.type2 {
+    height: 100%;
+    align-content: center;
+}
+
+.container.type2 {
+    height: 100%;
+    width: 100%;
+    align-content: center;
+}
+
+#filebutton {
+    color: white;
+}
+
+.panel-heading {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: white;
+}
+
+.media-body {
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: rgba(66, 74, 82, 0.4) !important;
+}
+
+.media-body .panel-heading {
+    padding: 20px;
+}
+
+.media-body .author {
+    display: block;
+    color: black;
+    font-weight: 700;
+}
+
+.media-body .metadata {
+    display: block;
+    color: black;
+    font-size: .75rem;
+}
+
+.title-comments {
+    color: black;
+    margin-top: 100px;
+}
+
+.media-left img {
+    width: 70px;
+}
+
+.media {
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.media-text {
+    color: white;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+}
+
+.form-group.panel-body {
+    margin-top: 30px;
+    margin-left: 120px;
+    padding: 20px;
+    background-color: rgba(33, 37, 41, 0.3) !important;
+}
+
+.form-group.alt {
+    margin-top: 30px;
+    margin-left: 120px;
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+.input-tr, .input-tr:hover, .input-tr:focus {
+    background-color: rgba(33, 37, 41, 0.3) !important;
+    border: none !important;
+    outline: none !important;
+    color: white;
+    font-size: large;
+    width: 100%;
+}
+
+.hidden {
+    font-size: 0;
+}
+
+.like-toggle {
+    border: none;
+    width: 30px;
+    height: 30px;
+    font-size: 1.0em;
+    border-radius: 100px;
+    background: #FF6A2A;
+    color: white;
+    outline: none !important;
+}
+
+.like-disable {
+    border: none;
+    width: 30px;
+    height: 30px;
+    font-size: 1.0em;
+    border-radius: 100px;
+    background: #f05aac;
+    color: white;
+    outline: none !important;
+}
+
+.like-active {
+    background: #f05aac;
+}
+
+.like-toggle:not(.like-active):hover {
+    background: #ff9c66;
+    width: 45px;
+}
+
+.list-centre {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flex-container {
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.error {
+    color: red;
+}
+
+#err {
+    font-style: unset;
+    text-align: center;
+}
+
+
+.a_reg {
+    color: white;
+}
