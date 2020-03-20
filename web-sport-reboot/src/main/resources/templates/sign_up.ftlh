@@ -42,6 +42,12 @@
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" id="email" name="email" class="form-control" placeholder="Email">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
                         <input type="password" id="password" name="password" class="form-control" placeholder="Пароль">

@@ -8,33 +8,34 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/styles.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
           integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <title>Вход</title>
     <script type="text/javascript">
         function check() {
-            var login = document.getElementById("loginField").value;
-            var password = document.getElementById("passwordField").value;
             var remember = document.getElementById("rem");
             var check = null;
             if (remember.checked == true) {
                 check = remember.value;
             }
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function () {
-                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    if (xmlhttp.responseText == 0) {
-                        //допилить алерт
-                        document.getElementById("err").innerHTML = "<p class=\"error\">Введите корректное имя</p>";
+
+            $.ajax({
+                url: "/signIn/auth",
+                data: {
+                    "email": $("#emailField").val(),
+                    "password": $("#passwordField").val(),
+                    "remember": check
+                },
+                success: function (msg) {
+                    alert(msg);
+                    if (msg.toString() == "error") {
+                        $("#err").html("<p class=\"error\">Введите корректные данные</p>")
                     } else {
                         window.location.href = "/profile"
                     }
                 }
-            };
-            xmlhttp.open("POST", "/login", true);
-            xmlhttp.setRequestHeader("Content-Type",
-                "application/x-www-form-urlencoded");
-            xmlhttp.send("login=" + login + "&password=" + password + "&remember=" + check);
+            })
         }
     </script>
 </head>
@@ -53,7 +54,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Логин" id="loginField" name="login">
+                            <input type="text" class="form-control" placeholder="Логин" id="emailField" name="login">
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">

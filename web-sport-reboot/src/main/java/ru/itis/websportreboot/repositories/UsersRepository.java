@@ -5,4 +5,5 @@ import ru.itis.websportreboot.models.User;
 
 public interface UsersRepository extends JpaRepository<User, Long> {
     User findByLogin(String login);
+    User findByEmail(String email);
 }

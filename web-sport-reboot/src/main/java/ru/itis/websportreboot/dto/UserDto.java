@@ -19,6 +19,7 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private String login;
+    private String email;
     private String photo;
 
     public static UserDto from(User user) {
@@ -27,6 +28,7 @@ public class UserDto {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .login(user.getLogin())
+                .email(user.getEmail())
                 .build();
     }
 

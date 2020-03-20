@@ -6,8 +6,7 @@ import ru.itis.websportreboot.dto.SignUpDto;
 import ru.itis.websportreboot.models.User;
 import ru.itis.websportreboot.repositories.UsersRepository;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import static ru.itis.websportreboot.utils.UserUtils.makeDigest;
 
 @Service
 public class SignUpServiceImpl implements SignUpService {
@@ -22,26 +21,9 @@ public class SignUpServiceImpl implements SignUpService {
                 .lastName(form.getLastName())
                 .password(makeDigest(form.getPassword()))
                 .login(form.getLogin())
+                .email(form.getEmail())
                 .build();
         usersRepository.save(user);
     }
 
-    @Override
-    public String makeDigest(String s) {
-        MessageDigest messageDigest = null;
-        try {
-            messageDigest = MessageDigest.getInstance("SHA-256");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        messageDigest.reset();
-        messageDigest.update(s.getBytes());
-        byte[] digest = messageDigest.digest();
-
-        StringBuilder hexString = new StringBuilder();
-        for (byte b : digest) {
-            hexString.append(Integer.toHexString(0xFF & b));
-        }
-        return hexString.toString();
-    }
 }
