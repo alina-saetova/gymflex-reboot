@@ -9,6 +9,8 @@ import ru.itis.websportreboot.repositories.ExercisesRepository;
 import ru.itis.websportreboot.repositories.UserToExerciseRepository;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,6 +24,9 @@ public class UserFavExercisesServiceImpl implements UserFavExercisesService {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ExerciseService exerciseService;
 
     @Override
     public UserToExercise check(Long userId, Long exerciseId) {
@@ -42,5 +47,27 @@ public class UserFavExercisesServiceImpl implements UserFavExercisesService {
             exercisesRepository.save(exercise);
         }
         return count;
+    }
+
+    @Override
+    public List<Exercise> getAll(HttpServletRequest request) {
+        User user = userService.getCurrentUser(request);
+        List<UserToExercise> list = userToExerciseRepository.findAllByUserId(user.getId());
+        List<Exercise> exercises = new ArrayList<>();
+        for (UserToExercise ute: list) {
+            exercises.add(exerciseService.getConcreteExercise(ute.getExerciseId()));
+        }
+        return exercises;
+    }
+
+    @Override
+    public void delete(Long exerciseId, HttpServletRequest request) {
+        User user = userService.getCurrentUser(request);
+        UserToExercise u = userToExerciseRepository.findByExerciseIdAndUserId(exerciseId, user.getId()).get();
+        userToExerciseRepository.deleteById(u.getId());
+
+        Exercise exercise = exerciseService.getConcreteExercise(exerciseId);
+        exercise.setCnt_likes(exercise.getCnt_likes() - 1);
+        exercisesRepository.save(exercise);
     }
 }
