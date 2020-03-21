@@ -6,6 +6,7 @@ import ru.itis.websportreboot.models.Exercise;
 import ru.itis.websportreboot.repositories.ExercisesRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ExerciseServiceImpl implements ExerciseService{
@@ -21,5 +22,11 @@ public class ExerciseServiceImpl implements ExerciseService{
     @Override
     public List<Exercise> search(String type) {
         return exercisesRepository.findByType(type);
+    }
+
+    @Override
+    public Exercise getConcreteExercise(Long id) {
+        Optional<Exercise> exerciseOptional = exercisesRepository.findById(id);
+        return exerciseOptional.orElse(null);
     }
 }

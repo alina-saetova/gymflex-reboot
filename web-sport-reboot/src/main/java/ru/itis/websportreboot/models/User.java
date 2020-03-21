@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -29,4 +31,7 @@ public class User {
     private State state;
 
     private  String confirmCode;
+
+    @OneToMany
+    private List<Commentary> commentaries;
 }

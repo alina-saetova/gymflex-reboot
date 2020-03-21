@@ -14,13 +14,13 @@
             var s = document.getElementById("muscula-select");
             var muscle = s.options[s.selectedIndex].value;
             $.ajax({
-                url: "/exerciseSection/search",
+                url: "/exercises/search",
                 data: {
                     "muscle": muscle
                 },
                 dataType: "json",
                 success: function (msg) {
-                    if (msg.length > 0) { 
+                    if (msg.length > 0) {
                         $("#resptext").html("");
                         for (var i = 0; i < msg.length; i++) {
                             $("#resptext").append("<div class=\"col-lg-4 col-sm-6 mb-4\">\n" +
@@ -77,7 +77,6 @@
             </div>
             <div class="col-lg-9 col-sm-12">
                 <div class="row" id="resptext">
-<#--                    <c:if test="${allexercises != null}">-->
                         <#list allexercises as ex>
                             <div class="col-lg-4 col-sm-6 mb-4">
                                 <div class="card h-100">
@@ -95,7 +94,6 @@
                                 </div>
                             </div>
                         </#list>
-<#--                    </c:if>-->
                 </div>
             </div>
         </div>

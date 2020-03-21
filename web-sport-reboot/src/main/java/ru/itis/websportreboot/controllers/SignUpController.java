@@ -8,6 +8,9 @@ import ru.itis.websportreboot.dto.SignUpDto;
 import ru.itis.websportreboot.service.CookieService;
 import ru.itis.websportreboot.service.SignUpService;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 public class SignUpController {
 
@@ -23,9 +26,11 @@ public class SignUpController {
     }
 
     @PostMapping("/signUp")
-    public String signUp(SignUpDto form) {
+    public String signUp(SignUpDto form, HttpServletResponse response) {
         signUpService.signUp(form);
-        cookieService.saveAuthCookie(form.getLogin());
+        String cookieValue = cookieService.saveAuthCookie(form.getLogin());
+        Cookie cookie = new Cookie("AuthCookie", cookieValue);
+        response.addCookie(cookie);
         return "redirect:/signUp";
     }
 }
