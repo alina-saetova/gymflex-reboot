@@ -16,23 +16,23 @@
 <@macros.nav />
 <div class="container type2">
     <div class="d-flex justify-content-center h-100">
-        <div class="card form-card">
+        <div class="card form-card" style="height: 620px;">
             <div class="card-header">
                 <h3><strong>Регистрация</strong></h3>
             </div>
             <div class="card-body">
-                <form method="post" id="log_on_form" enctype="multipart/form-data">
+                <form method="post" id="log_on_form" action="/signUp" enctype="multipart/form-data">
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="far fa-address-card"></i></span>
                         </div>
-                        <input type="text" id="name" name="firstName" class="form-control" placeholder="Имя">
+                        <input type="text" id="firstName" name="firstName" class="form-control" placeholder="Имя">
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="far fa-address-card"></i></span>
                         </div>
-                        <input type="text" id="surname" name="lastName" class="form-control" placeholder="Фамилия">
+                        <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Фамилия">
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
@@ -53,53 +53,13 @@
                         <input type="password" id="password" name="password" class="form-control" placeholder="Пароль">
                     </div>
                     <div class="reg_pass_err"></div>
-                    <br>
-                    <hr>
-                    <div>
-                        <input type="submit" value="Зарегистрироваться" class="btn float-right login_btn">
-                    </div>
+                    <input type="hidden" id="file_hidden" value="">
+
+                    <input type="submit" value="Зарегистрироваться" class="btn login_btn">
                 </form>
             </div>
             <div class="form-card" id="err">
             </div>
-            <script>
-                $(document).ready(function () {
-                    $('#log_on_form').submit(function (e) {
-                        e.preventDefault();
-                        var form = this;
-                        var login = $('#login').val();
-                        var password = $('#password').val();
-                        var name = $('#name').val();
-                        var surname = $('#surname').val();
-                        $(".error").remove();
-                        //от 2 до 20. первая - буква, потом буквы или цифры
-                        var regEx1 = /^[a-zA-Z][a-zA-Z0-9-_.]{2,20}$/;
-                        //первая буква, потом буквы или цифры
-                        var regEx2 = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/;
-                        //с большой буквы
-                        var regex3 = /^[A-ZА-Я][a-zA-Zа-яА-Я]+$/;
-                        var validName = regex3.test(name);
-                        var validSurname = regex3.test(surname);
-                        var validLogin = regEx1.test(login);
-                        var validPassword = regEx2.test(password);
-                        if (!validName) {
-                            $("#err").append('<p class="error">Введите корректное имя</p>');
-                        }
-                        if (!validSurname) {
-                            $("#err").append('<p class="error">Введите корректную фамилию</p>');
-                        }
-                        if (!validLogin) {
-                            $("#err").append('<p class="error">Введите корректный логин</p>');
-                        }
-                        if (!validPassword) {
-                            $("#err").append('<p class="error">Введите корректный пароль</p>');
-                        }
-                        if (validName && validSurname && validLogin && validPassword) {
-                            form.submit();
-                        }
-                    });
-                });
-            </script>
         </div>
     </div>
 </div>

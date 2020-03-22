@@ -28,7 +28,7 @@
                                 "                                    <a href=\"#\"><img class=\"card-img-top\" src=\"" + msg[i].photo + "\" alt=\"\" height=\"160\"></a>\n" +
                                 "                                    <div class=\"card-body\">\n" +
                                 "                                        <h5 class=\"card-title\">\n" +
-                                "                                            <a href=\"/exercise?id=" + msg[i].id + "\">" + msg[i].name + "</a>\n" +
+                                "                                            <a href=\"/exercises/" + msg[i].id + "\">" + msg[i].name + "</a>\n" +
                                 "                                        </h5>\n" +
                                 "                                        <div class='like'>\n" +
                                 "                                            <button class='like-disable'> ♥</button>\n" +
@@ -84,7 +84,7 @@
                                                      height="160"></a>
                                     <div class="card-body">
                                         <h5 class="card-title">
-                                            <a href="/exercise?id=${ex.id}">${ex.name}</a>
+                                            <a href="/exercises/${ex.id}">${ex.name}</a>
                                         </h5>
                                         <div class='like'>
                                             <button class='like-disable'> ♥</button>

@@ -15,7 +15,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="/exercises_section">Упражнения</a></li>
+                <li class="nav-item"><a class="nav-link" href="/exercises">Упражнения</a></li>
                 <li class="nav-item"><a class="nav-link" href="/trainings_section">Тренировки</a></li>
                 <li class="nav-item"><a class="nav-link" href="/calculator">Расчет калорий</a></li>
                 <li class="nav-item"><a class="nav-link" href="/create_training_one">Создать тренировку</a></li>

@@ -8,7 +8,6 @@ import ru.itis.websportreboot.models.UserToExercise;
 import ru.itis.websportreboot.repositories.ExercisesRepository;
 import ru.itis.websportreboot.repositories.UserToExerciseRepository;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,9 +22,6 @@ public class UserFavExercisesServiceImpl implements UserFavExercisesService {
     private ExercisesRepository exercisesRepository;
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
     private ExerciseService exerciseService;
 
     @Override
@@ -35,8 +31,7 @@ public class UserFavExercisesServiceImpl implements UserFavExercisesService {
     }
 
     @Override
-    public int like(Long exerciseId, HttpServletRequest request) {
-        User user = userService.getCurrentUser(request);
+    public int like(Long exerciseId, User user) {
         userToExerciseRepository.save(UserToExercise.builder().exerciseId(exerciseId).userId(user.getId()).build());
         Optional<Exercise> optionalExercise = exercisesRepository.findById(exerciseId);
         int count = 0;
@@ -50,8 +45,7 @@ public class UserFavExercisesServiceImpl implements UserFavExercisesService {
     }
 
     @Override
-    public List<Exercise> getAll(HttpServletRequest request) {
-        User user = userService.getCurrentUser(request);
+    public List<Exercise> getAll(User user) {
         List<UserToExercise> list = userToExerciseRepository.findAllByUserId(user.getId());
         List<Exercise> exercises = new ArrayList<>();
         for (UserToExercise ute: list) {
@@ -61,8 +55,7 @@ public class UserFavExercisesServiceImpl implements UserFavExercisesService {
     }
 
     @Override
-    public void delete(Long exerciseId, HttpServletRequest request) {
-        User user = userService.getCurrentUser(request);
+    public void delete(Long exerciseId, User user) {
         UserToExercise u = userToExerciseRepository.findByExerciseIdAndUserId(exerciseId, user.getId()).get();
         userToExerciseRepository.deleteById(u.getId());
 

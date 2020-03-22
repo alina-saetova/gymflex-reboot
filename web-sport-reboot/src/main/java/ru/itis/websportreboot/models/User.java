@@ -25,10 +25,12 @@ public class User {
     private String login;
     private String email;
     private String password;
-    private String photo;
 
     @Enumerated(value = EnumType.STRING)
     private State state;
+
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
 
     private  String confirmCode;
 

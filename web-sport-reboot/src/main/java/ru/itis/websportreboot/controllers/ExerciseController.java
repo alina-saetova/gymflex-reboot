@@ -1,12 +1,14 @@
 package ru.itis.websportreboot.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.websportreboot.models.Commentary;
 import ru.itis.websportreboot.models.Exercise;
 import ru.itis.websportreboot.models.User;
+import ru.itis.websportreboot.security.UserDetailsImpl;
 import ru.itis.websportreboot.service.CommentaryService;
 import ru.itis.websportreboot.service.ExerciseService;
 import ru.itis.websportreboot.service.UserFavExercisesService;
@@ -39,10 +41,10 @@ public class ExerciseController {
     @GetMapping("/exercises/{exercise-id}")
     public String getConcreteExercisePage(@PathVariable("exercise-id") Long exerciseId,
                                           Model model,
-                                          HttpServletRequest request) {
-
+                                          Authentication authentication) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        User user = userDetails.getUser();
         Exercise exercise = exerciseService.getConcreteExercise(exerciseId);
-        User user = userService.getCurrentUser(request);
         String like = "error";
         if (user != null) {
             if (userFavExercisesService.check(user.getId(), exerciseId) != null) {
@@ -68,14 +70,16 @@ public class ExerciseController {
     public Commentary comment(@PathVariable("exercise-id") Long exerciseId,
                               @RequestParam("type") String type,
                               @RequestParam("text") String text,
-                              HttpServletRequest request) {
-        return commentaryService.comment(exerciseId, type, text, request);
+                              Authentication authentication) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        return commentaryService.comment(exerciseId, type, text, userDetails.getUser());
     }
 
     @ResponseBody
     @RequestMapping(path = "/exercises/{exercise-id}/like", produces = "application/text; charset=UTF-8")
     public String like(@PathVariable("exercise-id") Long exerciseId,
-                              HttpServletRequest request) {
-        return "" + userFavExercisesService.like(exerciseId, request);
+                              Authentication authentication) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        return "" + userFavExercisesService.like(exerciseId, userDetails.getUser());
     }
 }

@@ -67,7 +67,7 @@
                 <div class="list-group ">
                     <form method="post" enctype="multipart/form-data">
                         <div class="list-group-item tr">
-                            <img id="profile-img"  alt="img" class="rounded-circle" width="180"
+                            <img id="profile-img" src="../img/users_photo.png" alt="img" class="rounded-circle" width="180"
                                  height="180">
                         </div>
                         <div class="list-group-item tr">

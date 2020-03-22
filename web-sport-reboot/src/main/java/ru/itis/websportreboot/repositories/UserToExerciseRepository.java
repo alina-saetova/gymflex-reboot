@@ -10,5 +10,4 @@ public interface UserToExerciseRepository extends JpaRepository<UserToExercise, 
 
     Optional<UserToExercise> findByExerciseIdAndUserId(Long exerciseId, Long userId);
     List<UserToExercise> findAllByUserId(Long userId);
-    void deleteByExerciseIdAndUserId(Long userId, Long exerciseId);
 }

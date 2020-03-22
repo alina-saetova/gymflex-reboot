@@ -64,12 +64,12 @@
                                    name="password">
                         </div>
                         <div class="row align-items-center remember">
-                            <input type="checkbox" name="remember" id="rem" value="check">Запомнить меня
+                            <input type="checkbox" name="remember" id="rem" value="check" checked>Запомнить меня
                         </div>
                         <hr>
                         <div>
-                            <a href="/registration" class="a_reg">Регистрация</a>
-                            <input type="button" value="Войти" class="btn float-right" onclick="check()">
+                            <a href="/signUp" class="a_reg">Регистрация</a>
+                            <input type="submit" value="Войти" class="btn float-right" >
                         </div>
                     </form>
                     <div id="err"></div>
