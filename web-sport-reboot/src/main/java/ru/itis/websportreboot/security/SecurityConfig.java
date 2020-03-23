@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/signUp").permitAll()
                 .antMatchers("/exercises").permitAll()
                 .antMatchers("/exercises/**").permitAll()
-                .antMatchers("/confirm").permitAll()
+                .antMatchers("/confirm/**").permitAll()
                 .antMatchers("/calculator").permitAll()
                 .antMatchers("/profile").authenticated()
                 .antMatchers("/").authenticated();
@@ -34,9 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin()
                 .loginPage("/signIn")
                 .defaultSuccessUrl("/profile")
-                .failureUrl("/signIn")
+                .failureUrl("/signIn?error")
                 .usernameParameter("email")
-                .passwordParameter("password")
                 .permitAll();
     }
 

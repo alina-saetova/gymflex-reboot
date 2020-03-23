@@ -12,32 +12,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
           integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <title>Вход</title>
-    <script type="text/javascript">
-        function check() {
-            var remember = document.getElementById("rem");
-            var check = null;
-            if (remember.checked == true) {
-                check = remember.value;
-            }
-
-            $.ajax({
-                url: "/signIn/auth",
-                data: {
-                    "email": $("#emailField").val(),
-                    "password": $("#passwordField").val(),
-                    "remember": check
-                },
-                success: function (msg) {
-                    alert(msg);
-                    if (msg.toString() == "error") {
-                        $("#err").html("<p class=\"error\">Введите корректные данные</p>")
-                    } else {
-                        window.location.href = "/profile"
-                    }
-                }
-            })
-        }
-    </script>
 </head>
 <body class="body-with-img">
     <#import "includes/footer.ftlh" as macros>
@@ -49,18 +23,18 @@
                     <h3><strong>Вход</strong></h3>
                 </div>
                 <div class="card-body">
-                    <form action="" method="post">
+                    <form action="/signIn" method="post">
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Логин" id="emailField" name="login">
+                            <input type="text" class="form-control" placeholder="Email" id="email" name="email">
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input type="password" class="form-control" placeholder="Пароль" id="passwordField"
+                            <input type="password" class="form-control" placeholder="Пароль" id="password"
                                    name="password">
                         </div>
                         <div class="row align-items-center remember">
@@ -72,7 +46,11 @@
                             <input type="submit" value="Войти" class="btn float-right" >
                         </div>
                     </form>
-                    <div id="err"></div>
+                    <div id="err">
+                        <#if error??>
+                            <p class="error">Введите корректные данные</p>
+                        </#if>
+                    </div>
                 </div>
             </div>
         </div>

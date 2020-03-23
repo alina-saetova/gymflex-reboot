@@ -10,6 +10,30 @@
           integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <title>Регистрация</title>
     <script src="https://code.jquery.com/jquery-2.2.4.js" charset="utf-8"></script>
+    <script>
+        function sendFile() {
+            let formData = new FormData();
+            let files = ($('#file'))[0]['files'];
+            [].forEach.call(files, function (file, i, files) {
+                formData.append("file", file);
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "/files",
+                data: formData,
+                processData: false,
+                contentType: false
+            })
+                .done(function (response) {
+                    let fileUrl = 'http://localhost/files/' + response;
+                    $('#photo').attr('value', ''+ fileUrl);
+                })
+                .fail(function () {
+                    alert('Error')
+                });
+        }
+    </script>
 </head>
 <body class="body-with-img">
 <#import "includes/footer.ftlh" as macros>
@@ -52,9 +76,11 @@
                         </div>
                         <input type="password" id="password" name="password" class="form-control" placeholder="Пароль">
                     </div>
-                    <div class="reg_pass_err"></div>
-                    <input type="hidden" id="file_hidden" value="">
-
+                    <div class="form-group">
+                        <input type="file" id="file" name="file" class="input-file">
+                    </div>
+                    <input type="button" onclick="sendFile()" class="btn" style="margin-bottom: 15px;" value="Загрузить"/>
+                    <input type="hidden" id="photo" name="photo" value="qq">
                     <input type="submit" value="Зарегистрироваться" class="btn login_btn">
                 </form>
             </div>

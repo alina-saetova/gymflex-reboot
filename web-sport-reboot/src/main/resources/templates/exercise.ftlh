@@ -64,7 +64,7 @@
                     <li class="media">
                         <div class="media-left">
                             <a href="#">
-                                <img src="../img/users_photo.png" class="media-object rounded-circle" alt="...">
+                                <img src="${com.user.photo}" class="media-object rounded-circle" alt="...">
                             </a>
                         </div>
                         <div class="media-body">

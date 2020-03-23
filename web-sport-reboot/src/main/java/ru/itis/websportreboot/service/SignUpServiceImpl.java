@@ -25,7 +25,6 @@ public class SignUpServiceImpl implements SignUpService {
     @Autowired
     private ExecutorService threadPool;
 
-
     @Autowired
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -37,6 +36,7 @@ public class SignUpServiceImpl implements SignUpService {
                 .password(passwordEncoder.encode(form.getPassword()))
                 .login(form.getLogin())
                 .email(form.getEmail())
+                .photo(form.getPhoto())
                 .state(State.NOT_CONFIRMED)
                 .role(Role.USER)
                 .confirmCode(UUID.randomUUID().toString())

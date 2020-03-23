@@ -23,7 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             System.out.println(userOptional.get().getEmail());
             return new UserDetailsImpl(userOptional.get());
         } else {
-            throw new UsernameNotFoundException("User with <" + email + "> not found");
+            throw new UsernameNotFoundException("User not found");
         }
     }
 }

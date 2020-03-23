@@ -13,7 +13,6 @@ import ru.itis.websportreboot.security.UserDetailsImpl;
 import ru.itis.websportreboot.service.UserFavExercisesService;
 import ru.itis.websportreboot.service.UserService;
 
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class ProfileController {
@@ -45,14 +44,13 @@ public class ProfileController {
         return "ok";
     }
 
-    @ResponseBody
-    @RequestMapping(path = "/profile/changePassword", produces = "application/text; charset=UTF-8")
-    public String changePassword(@RequestParam("oldpassword") String oldPassword,
-                         @RequestParam("newpassword") String newPassword,
-                         Authentication authentication) {
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        return userService.changeUserPassword(oldPassword, newPassword, userDetails.getUser());
-    }
+//    @ResponseBody
+//    @RequestMapping(path = "/profile/changePassword", produces = "application/text; charset=UTF-8")
+//    public String changePassword(@RequestParam("oldpassword") String oldPassword,
+//                         @RequestParam("newpassword") String newPassword,
+//                         Authentication authentication) {
+//        return userService.changeUserPassword(oldPassword, newPassword, authentication);
+//    }
 
     @ResponseBody
     @RequestMapping(path = "/profile/deleteArticle", produces = "application/text; charset=UTF-8")

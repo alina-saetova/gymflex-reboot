@@ -67,7 +67,7 @@
                 <div class="list-group ">
                     <form method="post" enctype="multipart/form-data">
                         <div class="list-group-item tr">
-                            <img id="profile-img" src="../img/users_photo.png" alt="img" class="rounded-circle" width="180"
+                            <img id="profile-img" src="${user.photo}" alt="img" class="rounded-circle" width="180"
                                  height="180">
                         </div>
                         <div class="list-group-item tr">
@@ -93,30 +93,30 @@
                         </div>
                     </form>
                 </div>
-                <div class="list-group py-4">
-                    <form action="" method="post">
-                        <div class="list-group-item tr">
-                            <h5>Старый пароль</h5>
-                        </div>
-                        <div class="list-group-item tr">
-                            <input class="input-tr" id="old_password" type="password" value=""/>
-                        </div>
-                        <div class="list-group-item tr">
-                            <h5>Новый пароль</h5>
-                        </div>
-                        <div class="list-group-item tr">
-                            <input class="input-tr"  id="new_password" type="password" value=""/>
-                        </div>
-                        <div class="list-group-item tr">
-                            <input type="button" value="Изменить пароль" class="btn btn-sm" onclick="change_password()">
-                        </div>
-                    </form>
-                    <form action="/logout">
-                        <div class="list-group-item tr">
-                            <button class="btn">Выйти</button>
-                        </div>
-                    </form>
-                </div>
+<#--                <div class="list-group py-4">-->
+<#--                    <form action="" method="post">-->
+<#--                        <div class="list-group-item tr">-->
+<#--                            <h5>Старый пароль</h5>-->
+<#--                        </div>-->
+<#--                        <div class="list-group-item tr">-->
+<#--                            <input class="input-tr" id="old_password" type="password" value=""/>-->
+<#--                        </div>-->
+<#--                        <div class="list-group-item tr">-->
+<#--                            <h5>Новый пароль</h5>-->
+<#--                        </div>-->
+<#--                        <div class="list-group-item tr">-->
+<#--                            <input class="input-tr"  id="new_password" type="password" value=""/>-->
+<#--                        </div>-->
+<#--                        <div class="list-group-item tr">-->
+<#--                            <input type="button" value="Изменить пароль" class="btn btn-sm" onclick="change_password()">-->
+<#--                        </div>-->
+<#--                    </form>-->
+<#--                    <form action="/logout">-->
+<#--                        <div class="list-group-item tr">-->
+<#--                            <button class="btn">Выйти</button>-->
+<#--                        </div>-->
+<#--                    </form>-->
+<#--                </div>-->
             </div>
             <div class="col-lg-9 col-sm-12">
                 <div class="list-group">
