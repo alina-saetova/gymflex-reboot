@@ -8,6 +8,7 @@ import ru.itis.websportreboot.repositories.CommentariesRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class CommentaryServiceImpl implements CommentaryService {
                 .user(user)
                 .build();
         commentariesRepository.save(com);
+        com.getUser().setCommentaries(new ArrayList<>());
         return com;
     }
 }

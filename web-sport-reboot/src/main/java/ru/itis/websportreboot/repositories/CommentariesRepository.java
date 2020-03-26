@@ -8,4 +8,5 @@ import java.util.List;
 public interface CommentariesRepository extends JpaRepository<Commentary, Long> {
 
     List<Commentary> findAllByArticleIdAndType(Long articleId, String type);
+    Commentary findByStringDate(String stringDate);
 }

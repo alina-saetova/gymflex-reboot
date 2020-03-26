@@ -16,7 +16,6 @@
             $.ajax({
                 url: t,
                 success: function (msg) {
-                    alert(msg);
                     $('#div_like').html("<button class='like-disable basic' disabled> ♥ </button>");
                     $('#div_like').append("<span id=\"cnt_likes\"> " + msg + " likes</span>");
                 }

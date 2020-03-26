@@ -1,6 +1,7 @@
 package ru.itis.websportreboot.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,12 +68,12 @@ public class ExerciseController {
 
     @ResponseBody
     @RequestMapping(path = "/exercises/{exercise-id}/comment", produces = "application/json; charset=UTF-8")
-    public Commentary comment(@PathVariable("exercise-id") Long exerciseId,
+    public ResponseEntity<Commentary> comment(@PathVariable("exercise-id") Long exerciseId,
                               @RequestParam("type") String type,
                               @RequestParam("text") String text,
                               Authentication authentication) {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        return commentaryService.comment(exerciseId, type, text, userDetails.getUser());
+        return ResponseEntity.ok().body(commentaryService.comment(exerciseId, type, text, userDetails.getUser()));
     }
 
     @ResponseBody
