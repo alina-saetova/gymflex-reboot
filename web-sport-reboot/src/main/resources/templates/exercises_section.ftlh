@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="ru">
+<#import "spring.ftl" as spring />
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -7,7 +8,7 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
     <script src="../js/like.js"></script>
-    <title>Упражнения</title>
+    <title><@spring.message 'exercises.section.page.exercises'/></title>
     <script src="https://code.jquery.com/jquery-2.2.4.js" charset="utf-8"></script>
     <script type="text/javascript">
         function fun() {
@@ -32,7 +33,7 @@
                                 "                                        </h5>\n" +
                                 "                                        <div class='like'>\n" +
                                 "                                            <button class='like-disable'> ♥</button>\n" +
-                                "                                            <span>" + msg[i].cnt_likes + " likes</span>\n" +
+                                "                                            <span>" + msg[i].cnt_likes + " <@spring.message 'exercises.section.page.likes'/></span>\n" +
                                 "                                        </div>\n" +
                                 "                                    </div>\n" +
                                 "                                </div>\n" +
@@ -47,11 +48,11 @@
     </script>
 </head>
 <body class="body-with-img">
-<#import "includes/footer.ftlh" as macros>
+<#import "footer.ftlh" as macros>
 <@macros.nav />
     <div class="container bootstrap snippet">
         <div class="row">
-            <div class="col-sm-10"><h1 class="my-4"><strong>Упражнения</strong></h1></div>
+            <div class="col-sm-10"><h1 class="my-4"><strong><@spring.message 'exercises.section.page.exercises'/></strong></h1></div>
         </div>
         <div class="row">
             <div class="col-lg-3 col-sm-6 mb-4">
@@ -59,18 +60,18 @@
                     <form method="post" id="muscle_select">
                         <div class="list-group-item tr">
                             <select class="custom-select" id="muscula-select" name="muscle">
-                                <option selected disabled>Мышцы</option>
-                                <option value="shoulders">Плечи</option>
-                                <option value="arms">Руки</option>
-                                <option value="chest">Грудь</option>
-                                <option value="back">Спина</option>
-                                <option value="abdominals">Пресс</option>
-                                <option value="butt">Ягодицы</option>
-                                <option value="legs">Ноги</option>
+                                <option selected disabled><@spring.message 'exercises.section.page.muscles'/></option>
+                                <option value="shoulders"><@spring.message 'exercises.section.page.muscles.shoulders'/></option>
+                                <option value="arms"><@spring.message 'exercises.section.page.muscles.arms'/></option>
+                                <option value="chest"><@spring.message 'exercises.section.page.muscles.chest'/></option>
+                                <option value="back"><@spring.message 'exercises.section.page.muscles.back'/></option>
+                                <option value="abdominals"><@spring.message 'exercises.section.page.muscles.abdominals'/></option>
+                                <option value="butt"><@spring.message 'exercises.section.page.muscles.glutes'/></option>
+                                <option value="legs"><@spring.message 'exercises.section.page.muscles.legs'/></option>
                             </select>
                         </div>
                         <div class="list-group-item tr">
-                            <input type="button" id="sendreq" class="btn" value="Подобрать" onclick="fun()">
+                            <input type="button" id="sendreq" class="btn" value="<@spring.message 'exercises.section.page.select'/>" onclick="fun()">
                         </div>
                     </form>
                 </div>
@@ -88,7 +89,7 @@
                                         </h5>
                                         <div class='like'>
                                             <button class='like-disable'> ♥</button>
-                                            <span>${ex.cnt_likes} likes</span>
+                                            <span>${ex.cnt_likes} <@spring.message 'exercises.section.page.likes'/></span>
                                         </div>
                                     </div>
                                 </div>

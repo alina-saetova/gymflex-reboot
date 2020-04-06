@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="ru">
+<#import "spring.ftl" as spring />
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,15 +18,15 @@
                 url: t,
                 success: function (msg) {
                     $('#div_like').html("<button class='like-disable basic' disabled> ♥ </button>");
-                    $('#div_like').append("<span id=\"cnt_likes\"> " + msg + " likes</span>");
+                    $('#div_like').append("<span id=\"cnt_likes\"> " + msg + " <@spring.message 'exercise.page.exercise'/></span>");
                 }
             });
         }
     </script>
-    <title>Упражнение</title>
+    <title><@spring.message 'exercise.page.exercise'/></title>
 </head>
 <body class="body-with-img">
-<#import "includes/footer.ftlh" as macros>
+<#import "footer.ftlh" as macros>
 <@macros.nav />
     <div class="container bootstrap snippet">
         <div class="row">
@@ -40,7 +41,7 @@
                         <#else >
                             <button class='like-toggle basic' onclick="like(${exercise.id})"> ♥</button>
                         </#if>
-                        <span id="cnt_likes">${exercise.cnt_likes} likes</span>
+                        <span id="cnt_likes">${exercise.cnt_likes} <@spring.message 'exercise.page.likes'/></span>
                     </div>
                 </div>
             </div>
@@ -56,7 +57,7 @@
     </div>
     <div class="container">
         <div class="comments">
-            <h3 class="title-comments">Комментарии </h3>
+            <h3 class="title-comments"><@spring.message 'exercise.page.commentaries'/> </h3>
             <ul class="media-list" id="comments_cont">
                 <!-- Комментарий (уровень 1) -->
                 <#list comms as com>
@@ -85,7 +86,7 @@
             <#if user??>
                 <div class="form-group panel-body">
                     <form method="post">
-                        <label for="textarea1"><h6>Добавьте комментарий</h6></label>
+                        <label for="textarea1"><h6><@spring.message 'exercise.page.commentaries.add'/></h6></label>
                         <textarea class="form-control" id="textarea1"></textarea>
                         <script>
                             document.getElementById("textarea1").onkeyup = function () {
@@ -95,14 +96,14 @@
                                 }
                             }
                         </script>
-                        <input type="button" class="btn" value="Прокомментировать"
+                        <input type="button" class="btn" value="<@spring.message 'exercise.page.commentaries.comment'/>"
                                onclick="send_comment(${exercise.id})">
                     </form>
                 </div>
             <#else>
                 <div class="form-group alt">
                     <form action="/signIn">
-                        <button class="btn btn-sm btn-comment">Войдите, чтобы прокомментировать</button>
+                        <button class="btn btn-sm btn-comment"><@spring.message 'exercise.page.enter'/></button>
                     </form>
                 </div>
             </#if>

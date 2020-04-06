@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="ru">
+<#import "spring.ftl" as spring />
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,7 +9,7 @@
     <link rel="stylesheet" href="../css/styles.css" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
           integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <title>Регистрация</title>
+    <title><@spring.message 'signup.page.registration'/></title>
     <script src="https://code.jquery.com/jquery-2.2.4.js" charset="utf-8"></script>
     <script>
         function sendFile() {
@@ -36,13 +37,13 @@
     </script>
 </head>
 <body class="body-with-img">
-<#import "includes/footer.ftlh" as macros>
+<#import "footer.ftlh" as macros>
 <@macros.nav />
 <div class="container type2">
     <div class="d-flex justify-content-center h-100">
         <div class="card form-card" style="height: 620px;">
             <div class="card-header">
-                <h3><strong>Регистрация</strong></h3>
+                <h3><strong><@spring.message 'signup.page.registration'/></strong></h3>
             </div>
             <div class="card-body">
                 <form method="post" id="log_on_form" action="/signUp" enctype="multipart/form-data">
@@ -50,38 +51,38 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="far fa-address-card"></i></span>
                         </div>
-                        <input type="text" id="firstName" name="firstName" class="form-control" placeholder="Имя">
+                        <input type="text" id="firstName" name="firstName" class="form-control" placeholder="<@spring.message 'signup.page.name'/>">
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="far fa-address-card"></i></span>
                         </div>
-                        <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Фамилия">
+                        <input type="text" id="lastName" name="lastName" class="form-control" placeholder="<@spring.message 'signup.page.surname'/>">
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" id="login" name="login" class="form-control" placeholder="Логин">
+                        <input type="text" id="login" name="login" class="form-control" placeholder="<@spring.message 'signup.page.login'/>">
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" id="email" name="email" class="form-control" placeholder="Email">
+                        <input type="text" id="email" name="email" class="form-control" placeholder="<@spring.message 'signup.page.email'/>">
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" id="password" name="password" class="form-control" placeholder="Пароль">
+                        <input type="password" id="password" name="password" class="form-control" placeholder="<@spring.message 'signup.page.password'/>">
                     </div>
                     <div class="form-group">
                         <input type="file" id="file" name="file" class="input-file">
                     </div>
-                    <input type="button" onclick="sendFile()" class="btn" style="margin-bottom: 15px;" value="Загрузить"/>
+                    <input type="button" onclick="sendFile()" class="btn" style="margin-bottom: 15px;" value="<@spring.message 'signup.page.upload'/>"/>
                     <input type="hidden" id="photo" name="photo" value="qq">
-                    <input type="submit" value="Зарегистрироваться" class="btn login_btn">
+                    <input type="submit" value="<@spring.message 'signup.page.sign.up'/>" class="btn login_btn">
                 </form>
             </div>
             <div class="form-card" id="err">
