@@ -20,7 +20,7 @@
                     login: $('#login').val()
                 },
                 success: function(msg) {
-                    alert("успешно сохранено")
+                    alert("<@spring.message 'profile.page.success'/>")
                 }
             })
         }
