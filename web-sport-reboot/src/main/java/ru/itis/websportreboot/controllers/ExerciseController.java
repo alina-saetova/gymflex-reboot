@@ -15,7 +15,6 @@ import ru.itis.websportreboot.service.ExerciseService;
 import ru.itis.websportreboot.service.UserFavExercisesService;
 import ru.itis.websportreboot.service.UserService;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -43,13 +42,16 @@ public class ExerciseController {
     public String getConcreteExercisePage(@PathVariable("exercise-id") Long exerciseId,
                                           Model model,
                                           Authentication authentication) {
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        User user = userDetails.getUser();
+        User user = null;
+        if (authentication != null) {
+            UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+            user = userDetails.getUser();
+        }
         Exercise exercise = exerciseService.getConcreteExercise(exerciseId);
-        String like = "error";
+        String like = "disable";
         if (user != null) {
-            if (userFavExercisesService.check(user.getId(), exerciseId) != null) {
-                like = "ok";
+            if (userFavExercisesService.check(user.getId(), exerciseId) == null) {
+                like = "able";
             }
         }
         model.addAttribute("exercise", exercise);

@@ -24,23 +24,7 @@
                 }
             })
         }
-        // function change_password() {
-        //     $.ajax({
-        //         url: "/profile/changePassword",
-        //         data: {
-        //             oldpassword: $("#old_password").val(),
-        //             newpassword: $('#new_password').val()
-        //         },
-        //         success:function (msg) {
-        //             if (msg == "ok") {
-        //                 alert("успешно сохранено")
-        //             }
-        //             else {
-        //                 alert("введен неправильный старый пароль")
-        //             }
-        //         }
-        //     })
-        // }
+
         function remove(id) {
             document.getElementById(id).remove();
         }
@@ -94,52 +78,27 @@
                         </div>
                     </form>
                 </div>
-<#--                <div class="list-group py-4">-->
-<#--                    <form action="" method="post">-->
-<#--                        <div class="list-group-item tr">-->
-<#--                            <h5>Старый пароль</h5>-->
-<#--                        </div>-->
-<#--                        <div class="list-group-item tr">-->
-<#--                            <input class="input-tr" id="old_password" type="password" value=""/>-->
-<#--                        </div>-->
-<#--                        <div class="list-group-item tr">-->
-<#--                            <h5>Новый пароль</h5>-->
-<#--                        </div>-->
-<#--                        <div class="list-group-item tr">-->
-<#--                            <input class="input-tr"  id="new_password" type="password" value=""/>-->
-<#--                        </div>-->
-<#--                        <div class="list-group-item tr">-->
-<#--                            <input type="button" value="Изменить пароль" class="btn btn-sm" onclick="change_password()">-->
-<#--                        </div>-->
-<#--                    </form>-->
-<#--                    <form action="/logout">-->
-<#--                        <div class="list-group-item tr">-->
-<#--                            <button class="btn">Выйти</button>-->
-<#--                        </div>-->
-<#--                    </form>-->
-<#--                </div>-->
             </div>
             <div class="col-lg-9 col-sm-12">
                 <div class="list-group">
-<#--                    <c:if test="${saved_trainings.size() != 0}">-->
-<#--                        <h3 class="my-2"><strong>Сохраненные тренировки</strong></h3>-->
-<#--                        <c:forEach var="s_tr" items="${saved_trainings}">-->
-<#--                            <form method="post">-->
-<#--                                <div class="list-group-item tr d-flex justify-content-between" id="${s_tr.getId()}">-->
-<#--                                    <a href="/training?id=${s_tr.getId()}" class="list-group-item col-sm-10">${s_tr.getName()}</a>-->
-<#--                                    <input type="button" class="btn col-sm-1" value="x" onclick="delete_from_db(${s_tr.getId()}, 'training'); remove(${s_tr.getId()})">-->
-<#--                                </div>-->
-<#--                            </form>-->
-<#--                        </c:forEach>-->
-<#--                    </c:if>-->
-<#--                    <c:if test="${saved_trainings.size() == 0}">-->
-<#--                        <div class="list-group">-->
-<#--                            <h3 class="my-2"><strong>Сохраненные тренировки</strong></h3>-->
-<#--                            <div class="list-group-item tr d-flex justify-content-between">-->
-<#--                                <h5><strong>Добавьте тренировку</strong></h5>-->
-<#--                            </div>-->
-<#--                        </div>-->
-<#--                    </c:if>-->
+                    <#if (saved_trainings?size != 0)>
+                        <h3 class="my-2"><strong><@spring.message 'profile.page.saved.trainings'/></strong></h3>
+                        <#list saved_trainings as s_tr>
+                            <form method="post">
+                                <div class="list-group-item tr d-flex justify-content-between" id="${s_tr.id}">
+                                    <a href="/trainings/${s_tr.id}" class="list-group-item col-sm-10">${s_tr.name}</a>
+                                    <input type="button" class="btn col-sm-1" value="x" onclick="delete_from_db(${s_tr.id}, 'training'); remove(${s_tr.id})">
+                                </div>
+                            </form>
+                        </#list>
+                    <#else>
+                        <div class="list-group">
+                            <h3 class="my-2"><strong><@spring.message 'profile.page.saved.trainings'/></strong></h3>
+                            <div class="list-group-item tr d-flex justify-content-between">
+                                <h5><strong><@spring.message 'profile.page.add.trainings'/></strong></h5>
+                            </div>
+                        </div>
+                    </#if>
                     <hr>
                     <#if (saved_exercises?size != 0)>
                         <h3 class="my-2"><strong><@spring.message 'profile.page.saved.exercises'/></strong></h3>

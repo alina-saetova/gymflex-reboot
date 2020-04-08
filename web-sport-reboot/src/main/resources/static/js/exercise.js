@@ -1,9 +1,12 @@
-function send_comment(ex_id) {
-    var t = "/exercises/" + ex_id + "/comment";
+function send_comment(typeT, id) {
+    var t = "/exercises/" + id + "/comment";
+    if (typeT == "training") {
+        t = "/trainings/" + id + "/comment"
+    }
     $.ajax({
         url: t,
         data: {
-            type: "exercise",
+            type: typeT,
             text: $("#textarea1").val()
         },
         dataType: "json",

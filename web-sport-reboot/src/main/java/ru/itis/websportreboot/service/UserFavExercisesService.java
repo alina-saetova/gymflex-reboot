@@ -10,7 +10,7 @@ import java.util.List;
 public interface UserFavExercisesService {
 
     UserToExercise check(Long userId, Long exerciseId);
-    int like(Long userId, User user);
+    int like(Long exerciseId, User user);
     List<Exercise> getAll(User user);
     void delete(Long exerciseId, User user);
 }

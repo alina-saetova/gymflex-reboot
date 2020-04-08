@@ -18,7 +18,7 @@
                 url: t,
                 success: function (msg) {
                     $('#div_like').html("<button class='like-disable basic' disabled> ♥ </button>");
-                    $('#div_like').append("<span id=\"cnt_likes\"> " + msg + " <@spring.message 'exercise.page.exercise'/></span>");
+                    $('#div_like').append("<span id=\"cnt_likes\"> " + msg + " <@spring.message 'exercise.page.likes'/></span>");
                 }
             });
         }
@@ -36,7 +36,7 @@
             <div class="col-lg-3 col-sm-6 mb-4">
                 <div class="list-group-item tr">
                     <div class='like' id="div_like">
-                        <#if flag == "ok">
+                        <#if flag == "disable">
                             <button class='like-disable basic' disabled> ♥</button>
                         <#else >
                             <button class='like-toggle basic' onclick="like(${exercise.id})"> ♥</button>
@@ -97,7 +97,7 @@
                             }
                         </script>
                         <input type="button" class="btn" value="<@spring.message 'exercise.page.commentaries.comment'/>"
-                               onclick="send_comment(${exercise.id})">
+                               onclick="send_comment('exercise', ${exercise.id})">
                     </form>
                 </div>
             <#else>
