@@ -18,7 +18,7 @@
                 <li class="nav-item"><a class="nav-link" href="/exercises"><@spring.message 'navigation.exercises'/></a></li>
                 <li class="nav-item"><a class="nav-link" href="/trainings"><@spring.message 'navigation.trainings'/></a></li>
                 <li class="nav-item"><a class="nav-link" href="/calculator"><@spring.message 'navigation.calculator'/></a></li>
-                <li class="nav-item"><a class="nav-link" href="/createTrainingOne"><@spring.message 'navigation.create'/></a></li>
+                <li class="nav-item"><a class="nav-link" href="/createTraining"><@spring.message 'navigation.create'/></a></li>
                 <li class="nav-item"><a class="nav-link" href="/profile"><@spring.message 'navigation.profile'/></a></li>
             </ul>
         </div>

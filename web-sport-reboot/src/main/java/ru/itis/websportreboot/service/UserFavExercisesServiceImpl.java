@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.itis.websportreboot.models.Exercise;
 import ru.itis.websportreboot.models.User;
-import ru.itis.websportreboot.models.UserToExercise;
+import ru.itis.websportreboot.models.FavUserExercise;
 import ru.itis.websportreboot.repositories.ExercisesRepository;
-import ru.itis.websportreboot.repositories.UserToExerciseRepository;
+import ru.itis.websportreboot.repositories.UserFavExerciseRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class UserFavExercisesServiceImpl implements UserFavExercisesService {
 
     @Autowired
-    private UserToExerciseRepository userToExerciseRepository;
+    private UserFavExerciseRepository userFavExerciseRepository;
 
     @Autowired
     private ExercisesRepository exercisesRepository;
@@ -25,14 +25,14 @@ public class UserFavExercisesServiceImpl implements UserFavExercisesService {
     private ExerciseService exerciseService;
 
     @Override
-    public UserToExercise check(Long userId, Long exerciseId) {
-        Optional<UserToExercise> optional = userToExerciseRepository.findByExerciseIdAndUserId(exerciseId, userId);
+    public FavUserExercise check(Long userId, Long exerciseId) {
+        Optional<FavUserExercise> optional = userFavExerciseRepository.findByExerciseIdAndUserId(exerciseId, userId);
         return optional.orElse(null);
     }
 
     @Override
     public int like(Long exerciseId, User user) {
-        userToExerciseRepository.save(UserToExercise.builder().exerciseId(exerciseId).userId(user.getId()).build());
+        userFavExerciseRepository.save(FavUserExercise.builder().exerciseId(exerciseId).userId(user.getId()).build());
         Optional<Exercise> optionalExercise = exercisesRepository.findById(exerciseId);
         int count = 0;
         if (optionalExercise.isPresent()) {
@@ -46,9 +46,9 @@ public class UserFavExercisesServiceImpl implements UserFavExercisesService {
 
     @Override
     public List<Exercise> getAll(User user) {
-        List<UserToExercise> list = userToExerciseRepository.findAllByUserId(user.getId());
+        List<FavUserExercise> list = userFavExerciseRepository.findAllByUserId(user.getId());
         List<Exercise> exercises = new ArrayList<>();
-        for (UserToExercise ute: list) {
+        for (FavUserExercise ute: list) {
             exercises.add(exerciseService.getConcreteExercise(ute.getExerciseId()));
         }
         return exercises;
@@ -56,8 +56,8 @@ public class UserFavExercisesServiceImpl implements UserFavExercisesService {
 
     @Override
     public void delete(Long exerciseId, User user) {
-        UserToExercise u = userToExerciseRepository.findByExerciseIdAndUserId(exerciseId, user.getId()).get();
-        userToExerciseRepository.deleteById(u.getId());
+        FavUserExercise u = userFavExerciseRepository.findByExerciseIdAndUserId(exerciseId, user.getId()).get();
+        userFavExerciseRepository.deleteById(u.getId());
 
         Exercise exercise = exerciseService.getConcreteExercise(exerciseId);
         exercise.setCnt_likes(exercise.getCnt_likes() - 1);

@@ -26,18 +26,4 @@ public class UserServiceImpl implements UserService {
         usersRepository.save(user);
     }
 
-//    @Override
-//    public String changeUserPassword(String oldPassword, String newPassword, User user) {
-//        String oldPasswordHash = UserUtils.makeDigest(oldPassword);
-//        String newPasswordHash = UserUtils.makeDigest(newPassword);
-//
-//        if (!oldPasswordHash.equals(user.getPassword())) {
-//            return "error";
-//        }
-//        else {
-//            user.setPassword(newPasswordHash);
-//        }
-//        usersRepository.save(user);
-//        return "ok";
-//    }
 }

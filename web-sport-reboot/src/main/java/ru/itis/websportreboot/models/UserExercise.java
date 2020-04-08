@@ -12,13 +12,17 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "sport_fav_trainings")
-public class UserToTraining {
+@Table(name = "sport_user_exercises")
+public class UserExercise {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    Long trainingId;
-    Long userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "utrainingId")
+    private UserTraining userTraining;
+
+    private String name;
+    private String reps;
 }

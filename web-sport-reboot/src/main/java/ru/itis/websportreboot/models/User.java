@@ -38,4 +38,7 @@ public class User {
 
     @OneToMany
     private List<Commentary> commentaries;
+
+    @OneToMany
+    private List<UserTraining> userTrainings;
 }

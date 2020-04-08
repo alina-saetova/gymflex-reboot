@@ -21,7 +21,7 @@ public class MainController {
     private ExerciseService exerciseService;
 
     @GetMapping("/")
-    public String getAllTrainingsPage(Model model) {
+    public String getMainPage(Model model) {
         model.addAttribute("trainings", trainingService.getAll());
         model.addAttribute("exercises", exerciseService.getAll());
         return "main_page";

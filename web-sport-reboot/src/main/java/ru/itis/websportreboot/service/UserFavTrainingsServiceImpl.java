@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.itis.websportreboot.models.Training;
 import ru.itis.websportreboot.models.User;
-import ru.itis.websportreboot.models.UserToTraining;
+import ru.itis.websportreboot.models.FavUserTraining;
 import ru.itis.websportreboot.repositories.TrainingsRepository;
-import ru.itis.websportreboot.repositories.UserToTrainingRepository;
+import ru.itis.websportreboot.repositories.UserFavTrainingRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class UserFavTrainingsServiceImpl implements UserFavTrainingsService {
 
     @Autowired
-    private UserToTrainingRepository userToTrainingRepository;
+    private UserFavTrainingRepository userFavTrainingRepository;
 
     @Autowired
     private TrainingsRepository trainingsRepository;
@@ -25,14 +25,14 @@ public class UserFavTrainingsServiceImpl implements UserFavTrainingsService {
     private TrainingService trainingService;
 
     @Override
-    public UserToTraining check(Long userId, Long trainingId) {
-        Optional<UserToTraining> optional = userToTrainingRepository.findByTrainingIdAndUserId(trainingId, userId);
+    public FavUserTraining check(Long userId, Long trainingId) {
+        Optional<FavUserTraining> optional = userFavTrainingRepository.findByTrainingIdAndUserId(trainingId, userId);
         return optional.orElse(null);
     }
 
     @Override
     public int like(Long trainingId, User user) {
-        userToTrainingRepository.save(UserToTraining.builder().trainingId(trainingId).userId(user.getId()).build());
+        userFavTrainingRepository.save(FavUserTraining.builder().trainingId(trainingId).userId(user.getId()).build());
         Optional<Training> optionalExercise = trainingsRepository.findById(trainingId);
         int count = 0;
         if (optionalExercise.isPresent()) {
@@ -46,9 +46,9 @@ public class UserFavTrainingsServiceImpl implements UserFavTrainingsService {
 
     @Override
     public List<Training> getAll(User user) {
-        List<UserToTraining> list = userToTrainingRepository.findAllByUserId(user.getId());
+        List<FavUserTraining> list = userFavTrainingRepository.findAllByUserId(user.getId());
         List<Training> exercises = new ArrayList<>();
-        for (UserToTraining ute: list) {
+        for (FavUserTraining ute: list) {
             exercises.add(trainingService.getConcreteTraining(ute.getTrainingId()));
         }
         return exercises;
@@ -56,8 +56,8 @@ public class UserFavTrainingsServiceImpl implements UserFavTrainingsService {
 
     @Override
     public void delete(Long trainingId, User user) {
-        UserToTraining u = userToTrainingRepository.findByTrainingIdAndUserId(trainingId, user.getId()).get();
-        userToTrainingRepository.deleteById(u.getId());
+        FavUserTraining u = userFavTrainingRepository.findByTrainingIdAndUserId(trainingId, user.getId()).get();
+        userFavTrainingRepository.deleteById(u.getId());
 
         Training training = trainingService.getConcreteTraining(trainingId);
         training.setCnt_likes(training.getCnt_likes() - 1);

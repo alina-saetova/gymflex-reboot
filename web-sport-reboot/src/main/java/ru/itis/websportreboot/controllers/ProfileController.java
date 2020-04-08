@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.itis.websportreboot.models.User;
+import ru.itis.websportreboot.repositories.UserTrainingRepository;
 import ru.itis.websportreboot.security.UserDetailsImpl;
+import ru.itis.websportreboot.service.CreateTrainingService;
 import ru.itis.websportreboot.service.UserFavExercisesService;
 import ru.itis.websportreboot.service.UserFavTrainingsService;
 import ru.itis.websportreboot.service.UserService;
@@ -27,11 +29,15 @@ public class ProfileController {
     @Autowired
     private UserFavTrainingsService userFavTrainingsService;
 
+    @Autowired
+    private CreateTrainingService createTrainingService;
+
     @GetMapping("/profile")
     public String getProfilePage(Model model, Authentication authentication) {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
-        model.addAttribute("user", userDetails.getUser());
+        User user = userDetails.getUser();
+        model.addAttribute("user", user);
+        model.addAttribute("user_trainings", createTrainingService.getUsersTrainings(user));
         model.addAttribute("saved_exercises", userFavExercisesService.getAll(userDetails.getUser()));
         model.addAttribute("saved_trainings", userFavTrainingsService.getAll(userDetails.getUser()));
         return "profile";
@@ -59,8 +65,11 @@ public class ProfileController {
         if (type.equals("exercise")) {
             userFavExercisesService.delete(id, userDetails.getUser());
         }
-        else {
+        else if (type.equals("training")){
             userFavTrainingsService.delete(id, userDetails.getUser());
+        }
+        else {
+            createTrainingService.delete(id, userDetails.getUser());
         }
 
         return "ok";

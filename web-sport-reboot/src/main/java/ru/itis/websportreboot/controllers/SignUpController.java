@@ -24,7 +24,6 @@ public class SignUpController {
 
     @PostMapping("/signUp")
     public String signUp(SignUpDto form) {
-        System.out.println(form.getPhoto() + "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
         signUpService.signUp(form);
         return "redirect:/signIn";
     }
