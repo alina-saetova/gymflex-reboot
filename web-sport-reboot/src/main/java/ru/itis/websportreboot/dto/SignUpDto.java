@@ -9,5 +9,8 @@ public class SignUpDto {
     private String login;
     private String email;
     private String password;
+    private String phoneNumber;
     private String photo;
+    private String confirmCode;
+    private String code;
 }

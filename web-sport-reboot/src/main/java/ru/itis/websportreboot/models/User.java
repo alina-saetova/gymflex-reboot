@@ -27,6 +27,7 @@ public class User {
     private String email;
     private String photo;
     private String password;
+    private String phoneNumber;
 
     @Enumerated(value = EnumType.STRING)
     private State state;
@@ -36,9 +37,9 @@ public class User {
 
     private  String confirmCode;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Commentary> commentaries;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<UserTraining> userTrainings;
 }

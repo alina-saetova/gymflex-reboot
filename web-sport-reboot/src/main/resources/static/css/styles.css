@@ -37,6 +37,10 @@ footer {
     background-color: #FFAE68;
 }
 
+.btn_on_signup {
+    width: 200px;
+}
+
 body {
     background-color: white;
     font-family: 'Comfortaa', sans-serif;

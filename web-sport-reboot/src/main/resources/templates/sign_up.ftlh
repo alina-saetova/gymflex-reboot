@@ -34,6 +34,44 @@
                     alert('Error')
                 });
         }
+
+        function sendCode() {
+            $.ajax({
+                url: "/signUp/sendCode",
+                data: {
+                    "phone": $('#phoneNumber').val()
+                },
+                success: function (code) {
+                    $('#code').attr('value', ''+ code);
+                }
+            })
+        }
+
+        function signUp() {
+            $.ajax({
+                type: "POST",
+                url: "/signUp",
+                data: {
+                    firstName: $("#firstName").val(),
+                    lastName: $('#lastName').val(),
+                    login: $('#login').val(),
+                    email: $('#email').val(),
+                    password: $('#password').val(),
+                    phoneNumber: $('#phoneNumber').val(),
+                    photo: $('#photo').val(),
+                    confirmCode: $('#confirmCode').val(),
+                    code: $('#code').val()
+                },
+                success: function (msg) {
+                    if (msg == 'ok') {
+                        window.location.href = "/signIn"
+                    }
+                    else {
+                        alert('wrong code, try again')
+                    }
+                }
+            })
+        }
     </script>
 </head>
 <body class="body-with-img">
@@ -41,7 +79,7 @@
 <@macros.nav />
 <div class="container type2">
     <div class="d-flex justify-content-center h-100">
-        <div class="card form-card" style="height: 620px;">
+        <div class="card form-card" style="height: 760px;">
             <div class="card-header">
                 <h3><strong><@spring.message 'signup.page.registration'/></strong></h3>
             </div>
@@ -80,9 +118,21 @@
                     <div class="form-group">
                         <input type="file" id="file" name="file" class="input-file">
                     </div>
-                    <input type="button" onclick="sendFile()" class="btn" style="margin-bottom: 15px;" value="<@spring.message 'signup.page.upload'/>"/>
+                    <input type="button" onclick="sendFile()" class="btn btn_on_signup" style="margin-bottom: 15px;" value="<@spring.message 'signup.page.upload'/>"/>
                     <input type="hidden" id="photo" name="photo" value="qq">
-                    <input type="submit" value="<@spring.message 'signup.page.sign.up'/>" class="btn login_btn">
+                    <input type="hidden" id="code" name="code" value="qq">
+                    <br>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="phone">
+                    </div>
+                    <input type="button" onclick="sendCode()" class="btn btn_on_signup" style="margin-bottom: 15px;" value="send code"/>
+                    <div class="input-group form-group">
+                        <input type="text" id="confirmCode" name="confirmCode" class="form-control" placeholder="code">
+                    </div>
+                    <input type="button" value="<@spring.message 'signup.page.sign.up'/>" class="btn login_btn btn_on_signup" onclick="signUp()">
                 </form>
             </div>
             <div class="form-card" id="err">

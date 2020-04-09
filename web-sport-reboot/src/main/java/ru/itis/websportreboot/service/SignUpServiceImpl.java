@@ -1,13 +1,15 @@
 package ru.itis.websportreboot.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+import org.springframework.web.client.RestTemplate;
 import ru.itis.websportreboot.dto.SignUpDto;
-import ru.itis.websportreboot.models.Role;
-import ru.itis.websportreboot.models.State;
-import ru.itis.websportreboot.models.User;
+import ru.itis.websportreboot.models.*;
 import ru.itis.websportreboot.repositories.UsersRepository;
 
 import java.util.UUID;
@@ -37,6 +39,7 @@ public class SignUpServiceImpl implements SignUpService {
                 .login(form.getLogin())
                 .email(form.getEmail())
                 .photo(form.getPhoto())
+                .phoneNumber(form.getPhoneNumber())
                 .state(State.NOT_CONFIRMED)
                 .role(Role.USER)
                 .confirmCode(UUID.randomUUID().toString())
