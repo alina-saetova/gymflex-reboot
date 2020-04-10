@@ -126,11 +126,11 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="phone">
+                        <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="<@spring.message 'signup.page.phone'/>">
                     </div>
-                    <input type="button" onclick="sendCode()" class="btn btn_on_signup" style="margin-bottom: 15px;" value="send code"/>
+                    <input type="button" onclick="sendCode()" class="btn btn_on_signup" style="margin-bottom: 15px;" value="<@spring.message 'signup.page.send'/>"/>
                     <div class="input-group form-group">
-                        <input type="text" id="confirmCode" name="confirmCode" class="form-control" placeholder="code">
+                        <input type="text" id="confirmCode" name="confirmCode" class="form-control" placeholder="<@spring.message 'signup.page.code'/>">
                     </div>
                     <input type="button" value="<@spring.message 'signup.page.sign.up'/>" class="btn login_btn btn_on_signup" onclick="signUp()">
                 </form>
