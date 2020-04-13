@@ -9,22 +9,21 @@ import ru.itis.websportreboot.models.Exercise;
 import ru.itis.websportreboot.repositories.ExercisesRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class ExerciseServiceImpl implements ExerciseService{
+public class SearchServiceImpl implements SearchService {
 
     @Autowired
     private ExercisesRepository exercisesRepository;
 
     @Override
-    public List<Exercise> getAll() {
-        return exercisesRepository.findAll();
-    }
-
-    @Override
-    public Exercise getConcreteExercise(Long id) {
-        Optional<Exercise> exerciseOptional = exercisesRepository.findById(id);
-        return exerciseOptional.orElse(null);
+    public ExercisesSearchResult search(String query, Integer page, Integer size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        Page<Exercise> pageResult = exercisesRepository.search(query, pageRequest);
+        List<Exercise> exercises = pageResult.getContent();
+        return ExercisesSearchResult.builder()
+                .exercises(exercises)
+                .count(pageResult.getTotalPages())
+                .build();
     }
 }

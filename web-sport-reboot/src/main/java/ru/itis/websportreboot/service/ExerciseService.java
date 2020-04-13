@@ -7,6 +7,5 @@ import java.util.List;
 public interface ExerciseService {
 
     List<Exercise> getAll();
-    List<Exercise> search(String type);
     Exercise getConcreteExercise(Long id);
 }

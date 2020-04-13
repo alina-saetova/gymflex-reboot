@@ -11,39 +11,47 @@
     <title><@spring.message 'exercises.section.page.exercises'/></title>
     <script src="https://code.jquery.com/jquery-2.2.4.js" charset="utf-8"></script>
     <script type="text/javascript">
-        function fun() {
-            var s = document.getElementById("muscula-select");
-            var muscle = s.options[s.selectedIndex].value;
-            $.ajax({
-                url: "/exercises/search",
-                data: {
-                    "muscle": muscle
-                },
-                dataType: "json",
-                success: function (msg) {
-                    if (msg.length > 0) {
-                        $("#resptext").html("");
-                        for (var i = 0; i < msg.length; i++) {
-                            $("#resptext").append("<div class=\"col-lg-4 col-sm-6 mb-4\">\n" +
-                                "                                <div class=\"card h-100\">\n" +
-                                "                                    <a href=\"#\"><img class=\"card-img-top\" src=\"" + msg[i].photo + "\" alt=\"\" height=\"160\"></a>\n" +
-                                "                                    <div class=\"card-body\">\n" +
-                                "                                        <h5 class=\"card-title\">\n" +
-                                "                                            <a href=\"/exercises/" + msg[i].id + "\">" + msg[i].name + "</a>\n" +
-                                "                                        </h5>\n" +
-                                "                                        <div class='like'>\n" +
-                                "                                            <button class='like-disable'> ♥</button>\n" +
-                                "                                            <span>" + msg[i].cnt_likes + " <@spring.message 'exercises.section.page.likes'/></span>\n" +
-                                "                                        </div>\n" +
-                                "                                    </div>\n" +
-                                "                                </div>\n" +
-                                "                            </div>");
+        function search(page) {
+            var s = document.getElementById("size-select");
+            var size = s.options[s.selectedIndex].value;
+            if ($("#input_query").val().length >= 3) {
+                $.ajax({
+                    url: "/exercises/search",
+                    data: {
+                        "query": $("#input_query").val(),
+                        "page": page - 1,
+                        "size": size
+                    },
+                    dataType: "json",
+                    success: function (msg) {
+                        if (msg.exercises.length > 0) {
+                            $("#resptext").html("");
+                            $("#pages-button-spawn").html("");
+                            for (var i = 0; i < msg.exercises.length; i++) {
+                                $("#resptext").append("<div class=\"col-lg-4 col-sm-6 mb-4\">\n" +
+                                    "                                <div class=\"card h-100\">\n" +
+                                    "                                    <a href=\"#\"><img class=\"card-img-top\" src=\"" + msg.exercises[i].photo + "\" alt=\"\" height=\"160\"></a>\n" +
+                                    "                                    <div class=\"card-body\">\n" +
+                                    "                                        <h5 class=\"card-title\">\n" +
+                                    "                                            <a href=\"/exercises/" + msg.exercises[i].id + "\">" + msg.exercises[i].name + "</a>\n" +
+                                    "                                        </h5>\n" +
+                                    "                                        <div class='like'>\n" +
+                                    "                                            <button class='like-disable'> ♥</button>\n" +
+                                    "                                            <span>" + msg.exercises[i].cnt_likes + " <@spring.message 'exercises.section.page.likes'/></span>\n" +
+                                    "                                        </div>\n" +
+                                    "                                    </div>\n" +
+                                    "                                </div>\n" +
+                                    "                            </div>");
+                            }
+                            for (var i = 1; i <= msg.count; i++) {
+                                $("#pages-button-spawn").append("<button class='like-disable' onclick=\"search(" + i + ")\"> " + i + "</button>");
+                            }
+                        } else {
+                            $("#resptext").html("<@spring.message 'exercises.section.page.no.results'/>");
                         }
-                    } else {
-                        $("#resptext").html("No results..");
                     }
-                }
-            })
+                })
+            }
         }
     </script>
 </head>
@@ -54,48 +62,50 @@
         <div class="row">
             <div class="col-sm-10"><h1 class="my-4"><strong><@spring.message 'exercises.section.page.exercises'/></strong></h1></div>
         </div>
-        <div class="row">
+        <div class="row" style="min-height: 700px;">
             <div class="col-lg-3 col-sm-6 mb-4">
                 <div class="list-group form-group">
-                    <form method="post" id="muscle_select">
-                        <div class="list-group-item tr">
-                            <select class="custom-select" id="muscula-select" name="muscle">
-                                <option selected disabled><@spring.message 'exercises.section.page.muscles'/></option>
-                                <option value="shoulders"><@spring.message 'exercises.section.page.muscles.shoulders'/></option>
-                                <option value="arms"><@spring.message 'exercises.section.page.muscles.arms'/></option>
-                                <option value="chest"><@spring.message 'exercises.section.page.muscles.chest'/></option>
-                                <option value="back"><@spring.message 'exercises.section.page.muscles.back'/></option>
-                                <option value="abdominals"><@spring.message 'exercises.section.page.muscles.abdominals'/></option>
-                                <option value="butt"><@spring.message 'exercises.section.page.muscles.glutes'/></option>
-                                <option value="legs"><@spring.message 'exercises.section.page.muscles.legs'/></option>
-                            </select>
-                        </div>
-                        <div class="list-group-item tr">
-                            <input type="button" id="sendreq" class="btn" value="<@spring.message 'exercises.section.page.select'/>" onclick="fun()">
-                        </div>
-                    </form>
+                    <div class="card-header">
+                        <h4><strong><@spring.message 'exercises.section.page.searching'/></strong></h4>
+                    </div>
+                    <input type="text" id="input_query"/>
+                    <br>
+                    <select class="custom-select" id="size-select" name="size">
+                        <option selected disabled><@spring.message 'exercises.section.page.size'/></option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=5>5</option>
+                        <option value=10>10</option>
+                        <option value=20>20</option>
+                    </select>
+                    <div class="list-group-item tr">
+                        <input type="button" id="sendreq" class="btn" value="<@spring.message 'exercises.section.page.search'/>" onclick="search(1)"/>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-9 col-sm-12">
                 <div class="row" id="resptext">
-                        <#list allexercises as ex>
-                            <div class="col-lg-4 col-sm-6 mb-4">
-                                <div class="card h-100">
-                                    <a href="#"><img class="card-img-top" src="${ex.photo}" alt=""
-                                                     height="160"></a>
-                                    <div class="card-body">
-                                        <h5 class="card-title">
-                                            <a href="/exercises/${ex.id}">${ex.name}</a>
-                                        </h5>
-                                        <div class='like'>
-                                            <button class='like-disable'> ♥</button>
-                                            <span>${ex.cnt_likes} <@spring.message 'exercises.section.page.likes'/></span>
-                                        </div>
+                    <#list allexercises as ex>
+                        <div class="col-lg-4 col-sm-6 mb-4">
+                            <div class="card h-100">
+                                <a href="#"><img class="card-img-top" src="${ex.photo}" alt=""
+                                                 height="160"></a>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <a href="/exercises/${ex.id}">${ex.name}</a>
+                                    </h5>
+                                    <div class='like'>
+                                        <button class='like-disable'> ♥</button>
+                                        <span>${ex.cnt_likes} <@spring.message 'exercises.section.page.likes'/></span>
                                     </div>
                                 </div>
                             </div>
-                        </#list>
+                        </div>
+                    </#list>
                 </div>
+            </div>
+            <div id="pages-button-spawn">
+                <button class='like-disable' onclick="search(1)"> 1</button>
             </div>
         </div>
     </div>

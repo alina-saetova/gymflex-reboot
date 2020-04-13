@@ -6,6 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.itis.websportreboot.dto.ExercisesSearchResult;
 import ru.itis.websportreboot.models.Commentary;
 import ru.itis.websportreboot.models.Exercise;
 import ru.itis.websportreboot.models.User;
@@ -60,12 +61,6 @@ public class ExerciseController {
         model.addAttribute("flag", like);
 
         return "exercise";
-    }
-
-    @ResponseBody
-    @RequestMapping(path = "/exercises/search", produces = "application/json; charset=UTF-8")
-    public List<Exercise> searchExercises(@RequestParam("muscle") String muscle) {
-        return exerciseService.search(muscle);
     }
 
     @ResponseBody
