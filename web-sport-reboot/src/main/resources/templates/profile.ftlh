@@ -77,6 +77,11 @@
                             <input type="button" value="<@spring.message 'profile.page.change.data'/>" class="btn btn-sm" onclick="save()">
                         </div>
                     </form>
+                    <form action="/logout">
+                        <div class="list-group-item tr">
+                            <button class="btn">Выйти</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="col-lg-9 col-sm-12">

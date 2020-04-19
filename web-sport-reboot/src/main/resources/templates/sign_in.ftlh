@@ -39,8 +39,9 @@
                                    name="password">
                         </div>
                         <div class="row align-items-center remember">
-                            <input type="checkbox" name="remember" id="rem" value="check" checked><@spring.message 'signin.page.remember.me'/>
+                            <input type="checkbox" name="remember-me" value="check" checked><@spring.message 'signin.page.remember.me'/>
                         </div>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                         <hr>
                         <div>
                             <a href="/signUp" class="a_reg"><@spring.message 'signin.page.sign.up'/></a>

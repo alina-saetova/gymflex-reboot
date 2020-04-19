@@ -21,9 +21,7 @@ public class SearchController {
             @RequestParam("page") Integer page,
             @RequestParam("size") Integer size
     ) {
-        ExercisesSearchResult res = service.search(query, page, size);
-        System.out.println(res.getExercises().size() + " " + res.getCount());
-        return res;
+        return service.search(query, page, size);
     }
 }
 

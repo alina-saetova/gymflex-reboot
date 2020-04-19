@@ -39,7 +39,6 @@ public class CreateTrainingServiceImpl implements CreateTrainingService {
                 .build();
         userTraining.getExercises().add(userExercise);
         userTrainingRepository.save(userTraining);
-//        userExerciseRepository.save(userExercise);
     }
 
     @Override
