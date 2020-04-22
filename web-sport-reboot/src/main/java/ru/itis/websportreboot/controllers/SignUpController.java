@@ -36,7 +36,6 @@ public class SignUpController {
     @ResponseBody
     @RequestMapping(path = "/signUp", produces = "application/text; charset=UTF-8")
     public String signUp(SignUpDto form) {
-        System.out.println(form.getCode() + form.getConfirmCode());
         if (form.getCode().equals(form.getConfirmCode())) {
             signUpService.signUp(form);
             return "ok";

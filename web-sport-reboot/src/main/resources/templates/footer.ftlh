@@ -20,6 +20,7 @@
                 <li class="nav-item"><a class="nav-link" href="/calculator"><@spring.message 'navigation.calculator'/></a></li>
                 <li class="nav-item"><a class="nav-link" href="/createTraining"><@spring.message 'navigation.create'/></a></li>
                 <li class="nav-item"><a class="nav-link" href="/profile"><@spring.message 'navigation.profile'/></a></li>
+                <li class="nav-item"><a class="nav-link" href="/chat"><@spring.message 'navigation.chat'/></a></li>
             </ul>
         </div>
     </nav>

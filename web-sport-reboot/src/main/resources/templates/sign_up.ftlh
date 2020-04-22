@@ -30,8 +30,9 @@
                     let fileUrl = 'http://localhost/files/' + response;
                     $('#photo').attr('value', ''+ fileUrl);
                 })
-                .fail(function () {
-                    alert('Error')
+                .fail(function (response) {
+                    let fileUrl = 'http://localhost/files/' + response;
+                    $('#photo').attr('value', ''+ fileUrl);
                 });
         }
 
