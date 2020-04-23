@@ -11,7 +11,8 @@ function send_comment(typeT, id) {
         },
         dataType: "json",
         success: function (msg) {
-                $("#comments_cont").append("<li class=\"media\">\n" +
+            $('#textarea1').val('');
+            $("#comments_cont").append("<li class=\"media\">\n" +
                     "                    <div class=\"media-left\">\n" +
                     "                        <a href=\"#\">\n" +
                     "                            <img class=\"media-object rounded-circle\" src=\"" + msg.user.photo + "\" alt=\"...\">\n" +

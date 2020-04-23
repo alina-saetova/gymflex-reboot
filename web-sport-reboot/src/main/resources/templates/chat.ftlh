@@ -33,6 +33,7 @@
         }
 
         function sendMessage(text, login) {
+            $('#message').val('');
             webSocket.send(JSON.stringify({
                 "text" : text,
                 "from" : login
