@@ -38,9 +38,9 @@ public class User implements Serializable {
 
     private  String confirmCode;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Commentary> commentaries;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id", cascade = CascadeType.ALL)
+    private List<Commentary> commentaries = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<UserTraining> userTrainings;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id", cascade = CascadeType.ALL)
+    private List<UserTraining> userTrainings = new ArrayList<>();
 }
