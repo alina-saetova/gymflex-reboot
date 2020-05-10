@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import ru.itis.websportreboot.models.ProfileForm;
 import ru.itis.websportreboot.models.User;
 import ru.itis.websportreboot.repositories.UserTrainingRepository;
 import ru.itis.websportreboot.security.UserDetailsImpl;
@@ -15,6 +14,8 @@ import ru.itis.websportreboot.service.CreateTrainingService;
 import ru.itis.websportreboot.service.UserFavExercisesService;
 import ru.itis.websportreboot.service.UserFavTrainingsService;
 import ru.itis.websportreboot.service.UserService;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -38,21 +39,31 @@ public class ProfileController {
         User user = userDetails.getUser();
         model.addAttribute("user", user);
         model.addAttribute("user_trainings", createTrainingService.getUsersTrainings(user));
-        model.addAttribute("saved_exercises", userFavExercisesService.getAll(userDetails.getUser()));
-        model.addAttribute("saved_trainings", userFavTrainingsService.getAll(userDetails.getUser()));
+        model.addAttribute("saved_exercises", userFavExercisesService.getAll(user));
+        model.addAttribute("saved_trainings", userFavTrainingsService.getAll(user));
+        model.addAttribute("profileForm", new ProfileForm());
         return "profile";
     }
 
+    @PostMapping("/profile")
+    public String saveProfile(Authentication authentication,
+                              @Valid ProfileForm form,
+                              BindingResult bindingResult,
+                              Model model) {
 
-    @ResponseBody
-    @RequestMapping(path = "/profile/saveProfile", produces = "application/text; charset=UTF-8")
-    public String saveProfile(@RequestParam("firstname") String firstName,
-                         @RequestParam("lastname") String lastName,
-                         @RequestParam("login") String login,
-                         Authentication authentication) {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        userService.updateUser(firstName, lastName, login, userDetails.getUser());
-        return "ok";
+        User user = userDetails.getUser();
+        System.out.println(form.toString());
+        System.out.println(bindingResult.hasErrors());
+        if (!bindingResult.hasErrors()) {
+            user = userService.updateUser(form, userDetails.getUser());
+        }
+        model.addAttribute("profileForm", form);
+        model.addAttribute("user", user);
+        model.addAttribute("user_trainings", createTrainingService.getUsersTrainings(user));
+        model.addAttribute("saved_exercises", userFavExercisesService.getAll(user));
+        model.addAttribute("saved_trainings", userFavTrainingsService.getAll(user));
+        return "profile";
     }
 
     @ResponseBody

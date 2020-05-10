@@ -50,31 +50,49 @@
         <div class="row">
             <div class="col-lg-3 col-sm-6 mb-4">
                 <div class="list-group ">
-                    <form method="post" enctype="multipart/form-data">
+                    <@spring.bind "profileForm"/>
+                    <form method="post" action="/profile">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+
                         <div class="list-group-item tr">
                             <img id="profile-img" src="${user.photo}" alt="img" class="rounded-circle" width="180"
                                  height="180">
                         </div>
+
                         <div class="list-group-item tr">
                             <h5><strong><@spring.message 'profile.page.name'/></strong></h5>
                         </div>
                         <div class="list-group-item tr">
-                            <input class="input-tr" type="text" id="firstname" value="${user.firstName}"/>
+                            <@spring.formInput "profileForm.firstName" "class='input-tr'"/>
                         </div>
+                        <@spring.showErrors "<br>", "error"/>
+
                         <div class="list-group-item tr">
                             <h5><strong><@spring.message 'profile.page.surname'/></strong></h5>
                         </div>
                         <div class="list-group-item tr">
-                            <input class="input-tr" type="text" id="lastname" value="${user.lastName}"/>
+                            <@spring.formInput "profileForm.lastName" "class='input-tr'"/>
                         </div>
+                        <@spring.showErrors "<br>", "error"/>
+
                         <div class="list-group-item tr">
                             <h5><strong><@spring.message 'profile.page.login'/></strong></h5>
                         </div>
                         <div class="list-group-item tr">
-                            <input class="input-tr" type="text" id="login" value="${user.login}"/>
+                            <@spring.formInput "profileForm.login" "class='input-tr'"/>
+                        </div>
+                        <@spring.showErrors "<br>", "error"/>
+
+                        <div class="list-group-item tr">
+                            <h5><strong><@spring.message 'profile.page.email'/></strong></h5>
                         </div>
                         <div class="list-group-item tr">
-                            <input type="button" value="<@spring.message 'profile.page.change.data'/>" class="btn btn-sm" onclick="save()">
+                            <@spring.formInput "profileForm.email" "class='input-tr'"/>
+                        </div>
+                        <@spring.showErrors "<br>", "error"/>
+
+                        <div class="list-group-item tr">
+                            <input type="submit" value="<@spring.message 'profile.page.change.data'/>" class="btn btn-sm">
                         </div>
                     </form>
                     <form action="/logout">

@@ -3,6 +3,7 @@ package ru.itis.websportreboot.service;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import ru.itis.websportreboot.models.SignInRequest;
 import ru.itis.websportreboot.models.SignInResponse;
@@ -29,7 +30,7 @@ public class SendCodeServiceImpl implements SendCodeService {
                 new SignInRequest(phone, message, "SMS Aero", "DIRECT"), httpHeaders);
         String resourceUrl = "https://gate.smsaero.ru/v2/sms/send";
 
-        restTemplate.postForEntity(resourceUrl, request, SignInResponse.class);
+//        restTemplate.postForEntity(resourceUrl, request, SignInResponse.class);
 
         return "" + number;
     }

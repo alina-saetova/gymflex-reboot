@@ -3,16 +3,11 @@ package ru.itis.websportreboot;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ru.itis.websportreboot.models.Role;
-import ru.itis.websportreboot.models.State;
-import ru.itis.websportreboot.models.User;
-import ru.itis.websportreboot.repositories.UsersRepository;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
