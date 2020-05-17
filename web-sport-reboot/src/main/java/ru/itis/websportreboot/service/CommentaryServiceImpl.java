@@ -25,13 +25,9 @@ public class CommentaryServiceImpl implements CommentaryService {
 
     @Override
     public Commentary comment(Long id, String type, String text, User user) {
-        Date date = new Date();
-        SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy hh:mm");
-        String stringDate = f.format(date);
         Commentary com = Commentary.builder()
                 .articleId(id)
                 .content(text)
-                .stringDate(stringDate)
                 .type(type)
                 .user(user)
                 .build();

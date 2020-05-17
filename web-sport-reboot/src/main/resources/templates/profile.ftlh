@@ -146,7 +146,7 @@
                             <form method="post">
                                 <div class="list-group-item tr flex-container" id="own_tr${tr.id}">
                                     <div class="d-flex justify-content-between">
-                                        <h3>${tr.name}</h3>
+                                        <h3>${tr.title}</h3>
                                         <input type="button" class="btn col-sm-1" value="x" onclick="delete_from_db(${tr.id}, 'own_training');remove('own_tr${tr.id}')"/>
                                     </div>
                                     <hr>

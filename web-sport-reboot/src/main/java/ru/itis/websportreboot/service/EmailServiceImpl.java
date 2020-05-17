@@ -18,8 +18,6 @@ public class EmailServiceImpl implements EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    private VelocityEngine velocityEngine;
-
     @Value("${spring.mail.username}")
     private String userName;
 

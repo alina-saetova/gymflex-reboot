@@ -29,4 +29,12 @@ public class UserTraining {
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<UserExercise> exercises;
+
+    @Transient
+    private String title;
+
+    @PostLoad
+    public void setTitle() {
+        title = "Awesome " + name + " of " + exercises.size() + " exercises: ";
+    }
 }

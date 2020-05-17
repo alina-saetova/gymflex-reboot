@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -27,4 +29,11 @@ public class Commentary {
     private String type;
     private String content;
     private String stringDate;
+
+    @PrePersist
+    public void setDate() {
+        Date date = new Date();
+        SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+        this.stringDate = f.format(date);
+    }
 }

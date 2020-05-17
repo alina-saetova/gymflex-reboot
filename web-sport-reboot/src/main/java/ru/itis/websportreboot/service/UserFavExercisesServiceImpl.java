@@ -32,7 +32,12 @@ public class UserFavExercisesServiceImpl implements UserFavExercisesService {
 
     @Override
     public int like(Long exerciseId, User user) {
-        userFavExerciseRepository.save(FavUserExercise.builder().exerciseId(exerciseId).userId(user.getId()).build());
+        userFavExerciseRepository.save(
+                FavUserExercise.builder()
+                .exerciseId(exerciseId)
+                .userId(user.getId())
+                .build()
+        );
         Optional<Exercise> optionalExercise = exercisesRepository.findById(exerciseId);
         int count = 0;
         if (optionalExercise.isPresent()) {
