@@ -19,8 +19,13 @@ public class CommentaryServiceImpl implements CommentaryService {
     private CommentariesRepository commentariesRepository;
 
     @Override
-    public List<Commentary> getAllCommentaries(String type, Long article_id) {
+    public List<Commentary> getCommentariesByArticleId(String type, Long article_id) {
         return commentariesRepository.findAllByArticleIdAndType(article_id, type);
+    }
+
+    @Override
+    public List<Commentary> getAllCommentaries() {
+        return commentariesRepository.findAll();
     }
 
     @Override

@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface CommentaryService {
 
-    List<Commentary> getAllCommentaries(String type, Long article_id);
+    List<Commentary> getCommentariesByArticleId(String type, Long article_id);
+    List<Commentary> getAllCommentaries();
     Commentary comment(Long id, String type, String text, User user);
 }

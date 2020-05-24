@@ -60,7 +60,7 @@ public class TrainingController {
 
         model.addAttribute("exercises", exercises);
         model.addAttribute("training", training);
-        model.addAttribute("comms", commentaryService.getAllCommentaries("training", trainingId));
+        model.addAttribute("comms", commentaryService.getCommentariesByArticleId("training", trainingId));
         model.addAttribute("user", user);
         model.addAttribute("flag", like);
 

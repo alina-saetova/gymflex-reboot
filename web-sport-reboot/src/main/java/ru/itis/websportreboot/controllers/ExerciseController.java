@@ -6,7 +6,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.itis.websportreboot.dto.ExercisesSearchResult;
 import ru.itis.websportreboot.models.Commentary;
 import ru.itis.websportreboot.models.Exercise;
 import ru.itis.websportreboot.models.User;
@@ -15,8 +14,6 @@ import ru.itis.websportreboot.service.CommentaryService;
 import ru.itis.websportreboot.service.ExerciseService;
 import ru.itis.websportreboot.service.UserFavExercisesService;
 import ru.itis.websportreboot.service.UserService;
-
-import java.util.List;
 
 @Controller
 public class ExerciseController {
@@ -56,7 +53,7 @@ public class ExerciseController {
             }
         }
         model.addAttribute("exercise", exercise);
-        model.addAttribute("comms", commentaryService.getAllCommentaries("exercise", exerciseId));
+        model.addAttribute("comms", commentaryService.getCommentariesByArticleId("exercise", exerciseId));
         model.addAttribute("user", user);
         model.addAttribute("flag", like);
 
